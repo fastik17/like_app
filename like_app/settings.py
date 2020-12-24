@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import datetime
 import os
 import environs
+import clearbit
 
 env = environs.Env()
 
@@ -242,4 +243,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#CLEARBIT
+clearbit.key = env.str('CLEARBIT_KEY')
+
+#PyHunter
+HUNTER_API_KEY = os.environ.get('HUNTER_API_KEY')
 

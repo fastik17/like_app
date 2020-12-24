@@ -1,8 +1,12 @@
+import pprint
+
+from django.conf import settings
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from authentication.validators import ValidateEmailSerializerMixin
 from authentication.models import User
+from pyhunter import PyHunter
 
 
 class SignUpSerializer(ValidateEmailSerializerMixin, serializers.ModelSerializer):
@@ -23,7 +27,12 @@ class SignUpSerializer(ValidateEmailSerializerMixin, serializers.ModelSerializer
         )
         user.set_password(validated_data['password'])
         user.is_active = True
+        hunter = PyHunter(settings.HUNTER_API_KEY)
+        hunter.email_verifier(user.email)
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(hunter.email_verifier(user.email))
         user.save()
+
         return user
 
 

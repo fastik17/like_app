@@ -20,6 +20,8 @@ psycopg2-binary = "*"
 drf-yasg = "*"
 drf-writable-nested = "*"
 mixer = "*"
+clearbit = "*"
+pyhunter = "*"
 
 
 [requires]

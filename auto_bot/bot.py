@@ -76,7 +76,7 @@ class Bot(object):
                                 headers={'Authorization': f'JWT {access}'})
         likes = json.loads(response.text)
         liked = 0
-        id = likes.get('id')
+        id = likes[random.randint(0, len(likes) - 1)].get('id')
         response = requests.post(url=self.url + f'posts/{id}/like/',
                                  headers={'Authorization': f'JWT {access}'})
         if response.status_code == 401:

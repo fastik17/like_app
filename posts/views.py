@@ -7,7 +7,6 @@ from rest_framework.response import Response
 
 from authentication.serializers import CurrentUserSerializer
 from like_app.schema import EmptySchema
-from like_app.paginators import ResultPagination
 
 from posts import utils
 from posts.serializers import PostSerializers
@@ -62,7 +61,6 @@ class PostViewSet(ModelViewSet):
     Return all users which likes post by id
     """
     serializer_class = PostSerializers
-    pagination_class = ResultPagination
     queryset = Post.objects.all()
     permission_classes = [IsAuthenticated]
 
